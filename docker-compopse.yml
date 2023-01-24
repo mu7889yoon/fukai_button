@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  back:
+    image: python:3.9-slim
+    container_name: back
+    volumes:
+      - ./back:/app
+    working_dir: /app
+    expose:
+      - 8888
+    ports:
+      - 8100:8100
+    command: >
+      bash -c "
+        pip install -r requirements.txt &&
+        uvicorn aojiru:app --reload --host 0.0.0.0 --port 8888
+      "
+    tty: true
+  web:
+    image: node:16.18
+    container_name: web
+    tty: true
+    volumes:
+      - ./web:/app
+    working_dir: /app
+    ports:
+      - 80:80
+    command: >
+      bash -c "npm install &&
+      npm install nodemon -g &&
+      npm run dev"
