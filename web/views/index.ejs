@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>深い〜ボタン</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="content">
+        <button id="fukai" class="btn">深</button>
+    </div>
+    <script>
+        document.getElementById('fukai').addEventListener('click', function() {
+            fetch('/fukai', {
+                method: 'GET'
+            })
+        })
+    </script>
+    <%-include('rule') %>

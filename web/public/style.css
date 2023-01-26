@@ -1,0 +1,17 @@
+.content{
+    margin: auto;
+    padding:auto;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+}
+.btn{
+    font-size: 400px;
+    font-family: “STKaiti”, “ヒラギノ明朝 Pro W3”, “Hiragino Mincho Pro”, serif;
+    width: 80%;
+    height: width;
+    padding: 0;
+    box-sizing: border-box;
+    background: #5eeb00;
+    color: #ffffff;
+}
