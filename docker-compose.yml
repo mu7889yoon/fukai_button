@@ -13,7 +13,7 @@ services:
       - 8100:8100
     command: >
       bash -c "pip install -r requirements.txt &&
-        uvicorn main:app --reload --host 0.0.0.0 --port 8888"
+        uvicorn main:app --reload --host 0.0.0.0 --port 8100"
     tty: true
   web:
     image: node:16.18
@@ -26,5 +26,16 @@ services:
       - 80:80
     command: >
       bash -c "npm install &&
-      npm install nodemon -g &&
-      npm run dev"
+        npm run dev"
+    depends_on:
+      - back
+  ngrok:
+    image: wernight/ngrok:latest
+    ports:
+      - 4040:4040
+    environment:
+      NGROK_PROTOCOL: http
+      NGROK_PORT: web:80
+      NGROK_AUTH: ${NGROK_AUTH}
+    depends_on:
+      - web
